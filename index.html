@@ -1,0 +1,23 @@
+<html>
+<head>
+<title>WASM Example</title>
+<script src="main.js"></script>
+</head>
+<body>
+    <script type='text/javascript'>
+        var Module = {};
+
+        fetch('hello.wasm') // Fetch the binary
+            .then(response => response.arrayBuffer())
+            .then(buffer => {
+                Module.wasmBinary = buffer;
+                var script = document.createElement('script');
+                script.src = 'hello.js';
+                script.onload = function() {
+                  console.log('Emscripten boilerplate loaded.');
+                }
+                document.body.appendChild(script);
+            });
+    </script>    
+</body>
+</html>
